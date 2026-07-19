@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasterMind</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 2rem;
+        background: #f4f4f9;
+        color: #333;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      }
+      h1 {
+        margin-top: 0;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(15px, 1fr));
+        gap: 0.35rem;
+        margin-top: 1.5rem;
+      }
+      .grid-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background: #eef2ff;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 700;
+    color: #1f2937;
+      }
+      .grid-cell-result {
+        padding: 1rem;
+        background: #12b11a;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: 700;
+        color: #000307;
+      }     
+      .grid-cell-wrong {
+        padding: 1rem;
+        background: #ff0000;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: 700;
+        color: #fcfdff;
+      }
+      .grid select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        background: #fff;
+        font-size: 1rem;
+        color: #111827;
+        appearance: none;
+      }
+      .btn-valider-icone {
+  /* Dimensions : on en fait un carré parfait */
+  width: 48px;  /* Taille standard recommandée pour le tactile sur mobile */
+  height: 48px;
+  padding: 0;   /* Important pour annuler le padding par défaut */
+  
+  /* Design du bouton (similaire au précédent) */
+  background: linear-gradient(135deg, #00c6ff, #0072ff); /* Dégradé bleu vif */
+  border: none;
+  border-radius: 50%; /* Bouton parfaitement rond */
+  cursor: pointer;
+  
+  /* Centrage de l'icône */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  /* Style de l'icône (le caractère ✓) */
+  color: white;
+  font-size: 24px; /* Grosse icône pour être bien visible */
+  font-weight: bold;
+  
+  /* Ombre portée pour le relief */
+  box-shadow: 0 4px 10px rgba(0, 114, 255, 0.3);
+  
+  /* Animation fluide */
+  transition: all 0.3s ease;
+  
+  /* Pour éviter le highlight bleu sur mobile */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Effet au survol / appui */
+.btn-valider-icone:hover {
+  transform: scale(1.05); /* Légère augmentation de taille au lieu de translate */
+  box-shadow: 0 6px 15px rgba(0, 114, 255, 0.5);
+}
+
+.btn-valider-icone:active {
+  transform: scale(0.95); /* Effet d'enfoncement au clic */
+}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to MasterMind</h1>
+      <p>Mer7bA bikkom lmastermind Game version nwamar </p>
+      Hadi version alpha, kayn chi bugs, ila 3jbkom lgame 3tina feedback dyalkom bach n9adro n7ssno lgame.
+      <p>Guess the unique 5-digit number. You have 8 tries!</p>
+      Boune chance!
+         <div id="gridInput" class="grid">
+           
+         </div>
+      <div id="grid" class="grid"></div>
+      <div id="gridInputs" class="gridInputs"></div>
+    </div>
+   
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="mastermind.js"></script>
+</html>
