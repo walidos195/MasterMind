@@ -1,4 +1,4 @@
-const n = 5; 
+var n = 5; 
 var tries = 0;
 var black = 0;
 var white = 0;
@@ -33,6 +33,25 @@ function resetTokens() {
   tmp =[];
 }
 
+function resetGame() {
+  black = 0;
+  white = 0;
+  tmp =[];
+  tries = 0;
+  tableauUnique =[];
+  tmp =[];
+  const gridInput = document.getElementById('gridInput');
+  gridInput.innerHTML = ''; // Clear the grid input
+  const grid = document.getElementById('gridInputs');
+  if (grid) {
+    grid.remove(); // Remove the previous grid if it exists
+  }
+  const grid2 = document.getElementById('grid');
+  if (grid2) {
+    grid2.remove(); // Remove the previous grid if it exists
+  }
+  Main(); // Reinitialize the game
+}
 function checkInput(input,guess) {
  
 const submitButton = document.getElementById('submitGuess');
@@ -90,7 +109,28 @@ submitButton.disabled = true; // Désactive le bouton après la défaite.
   }
 }
 
+function submitDifficulty() {
+  const difficultySelect = document.getElementById('difficulty');
+  const selectedDifficulty = difficultySelect.value;
+  switch (selectedDifficulty) {
+    case 'easy':
+      console.log('Mode facile sélectionné');
+      n = 4; // Nombre d'éléments uniques pour le mode facile
+      break;
+    case 'medium':
+      console.log('Mode moyen sélectionné');
+      n = 5; // Nombre d'éléments uniques pour le mode moyen
+      break;
+    case 'hard':
+      console.log('Mode difficile sélectionné');
+      n = 6; // Nombre d'éléments uniques pour le mode difficile
+      break;
+    default:
+      n = 5; // Valeur par défaut si aucune difficulté n'est sélectionnée
+  }
 
+  resetGame(); // Réinitialise le jeu avec la nouvelle difficulté
+}
 
 function submitGuess() {
   
@@ -167,7 +207,11 @@ const submitButton = document.getElementById('submitGuess');
     if (submitButton) {
       submitButton.addEventListener('click', submitGuess);
     }
+const submitDifficultyButton = document.getElementById('submitDifficulty');
 
+    if (submitDifficultyButton) {
+      submitDifficultyButton.addEventListener('click', submitDifficulty);
+    }
   } catch (error) {
     console.error(error.message);
   }
