@@ -127,8 +127,8 @@ function submitGuess() {
       conclusion.className = 'grid-cell';
       conclusion.innerHTML = black+" x &#9899;  <br/>"+white+" x &#9898;"; // Cercle noir
       gridN.appendChild(conclusion);
-            grid.appendChild(gridN);
-      grid.appendChild(document.createElement('br')); // Ajoute une ligne de séparation
+            grid.prepend(gridN);
+      grid.prepend(document.createElement('br')); // Ajoute une ligne de séparation
       resetTokens();
 
 }
