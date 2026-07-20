@@ -4,7 +4,7 @@ var black = 0;
 var white = 0;
 var tableauUnique =[];
 var tmp =[];
-
+var max= 8; // Valeur maximale pour les nombres aléatoires
 const numbers = window.generatedNumbers || tableauUnique;
  
 
@@ -40,12 +40,16 @@ function resetGame() {
   tries = 0;
   tableauUnique =[];
   tmp =[];
+  const submitButton = document.getElementById('submitGuess');
+  submitButton.remove(); // Remove the previous submit button if it exists
   const gridInput = document.getElementById('gridInput');
   gridInput.innerHTML = ''; // Clear the grid input
+  gridInput.remove(); // Remove the previous grid input if it exists
   const grid = document.getElementById('gridInputs');
   if (grid) {
     grid.remove(); // Remove the previous grid if it exists
   }
+    
   const grid2 = document.getElementById('grid');
   if (grid2) {
     grid2.remove(); // Remove the previous grid if it exists
@@ -57,8 +61,6 @@ function checkInput(input,guess) {
 const submitButton = document.getElementById('submitGuess');
   tries++;
  
-      console.log('Tableau unique généré :', tableauUnique);
-      console.log('Input utilisateur :', input);
   for (let i = 0; i < input.length; i++) {
 
     for (let j = 0; j < guess.length; j++) {
@@ -85,7 +87,11 @@ const submitButton = document.getElementById('submitGuess');
 } 
 if(black === n) {
     alert("Félicitations ! Vous avez trouvé la combinaison !");
-      const grid = document.getElementById('grid');
+      const grid = document.createElement('div');
+      grid.id = 'grid';
+      grid.className = 'grid';
+      document.body.getElementsByClassName('container')[0].appendChild(grid);
+      
       tableauUnique.forEach((num) => {
         const cell = document.createElement('div');
         cell.className = 'grid-cell-result';
@@ -116,14 +122,17 @@ function submitDifficulty() {
     case 'easy':
       console.log('Mode facile sélectionné');
       n = 4; // Nombre d'éléments uniques pour le mode facile
+      max = 6; // Valeur maximale pour le mode facile
       break;
     case 'medium':
       console.log('Mode moyen sélectionné');
       n = 5; // Nombre d'éléments uniques pour le mode moyen
+      max = 8; // Valeur maximale pour le mode moyen
       break;
     case 'hard':
       console.log('Mode difficile sélectionné');
       n = 6; // Nombre d'éléments uniques pour le mode difficile
+      max = 10; // Valeur maximale pour le mode difficile
       break;
     default:
       n = 5; // Valeur par défaut si aucune difficulté n'est sélectionnée
@@ -167,14 +176,13 @@ function submitGuess() {
       conclusion.className = 'grid-cell';
       conclusion.innerHTML = black+" x &#9899;  <br/>"+white+" x &#9898;"; // Cercle noir
       gridN.appendChild(conclusion);
-            grid.prepend(gridN);
+      grid.prepend(gridN);
       grid.prepend(document.createElement('br')); // Ajoute une ligne de séparation
       resetTokens();
 
 }
 
-function Main() {
-  const max = 10; // Valeur maximale pour les nombres aléatoires
+function Main() { // Valeur maximale pour les nombres aléatoires
      // Nombre d'éléments uniques à générer
 
   try {
@@ -182,7 +190,16 @@ function Main() {
 
     var tableau= []; // Exemple de tableau à convertir en chaîne
   
-    const gridInput = document.getElementById('gridInput');
+    const gridInput = document.createElement('div');
+    gridInput.className = 'grid';
+    gridInput.id = 'gridInput';
+    document.body.getElementsByClassName('container')[0].appendChild(gridInput);
+      
+    const gridInputs = document.createElement('div');
+    
+    gridInputs.id = 'gridInputs';
+    document.body.getElementsByClassName('container')[0].appendChild(gridInputs);
+
     for (let i = 0; i < n; i++) {
         console.log(`Élément ${i} : ${tableau[i]}`);
         const select = document.createElement('select');
