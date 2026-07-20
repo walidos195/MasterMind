@@ -90,7 +90,7 @@ if(black === n) {
       const grid = document.createElement('div');
       grid.id = 'grid';
       grid.className = 'grid';
-      document.body.getElementsByClassName('container')[0].appendChild(grid);
+      document.getElementById('resultat').prepend(grid);
       
       tableauUnique.forEach((num) => {
         const cell = document.createElement('div');
@@ -103,7 +103,10 @@ if(black === n) {
   }
  if(tries > 8){
     alert("Vous avez dépassé le nombre d'essais autorisés !");
-     const grid = document.getElementById('grid');
+          const grid = document.createElement('div');
+      grid.id = 'grid';
+      grid.className = 'grid';
+      document.getElementById('resultat').prepend(grid);
       tableauUnique.forEach((num) => {
         const cell = document.createElement('div');
         cell.className = 'grid-cell-wrong';
@@ -194,14 +197,16 @@ function Main() { // Valeur maximale pour les nombres aléatoires
     gridInput.className = 'grid';
     gridInput.id = 'gridInput';
     document.body.getElementsByClassName('container')[0].appendChild(gridInput);
-      
+       const resultat = document.createElement('div');
+
+    resultat.id = 'resultat';
+    document.body.getElementsByClassName('container')[0].appendChild(resultat);
     const gridInputs = document.createElement('div');
     
     gridInputs.id = 'gridInputs';
     document.body.getElementsByClassName('container')[0].appendChild(gridInputs);
 
     for (let i = 0; i < n; i++) {
-        console.log(`Élément ${i} : ${tableau[i]}`);
         const select = document.createElement('select');
         select.name = `guess${i + 1}`;
         for (let j = 0; j < max; j++) {
